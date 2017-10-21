@@ -1,41 +1,89 @@
-const { join, resolve } = require('path');
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const {
+    flow
+} = require('lodash/fp');
+const {
+    join,
+    resolve
+} = require('path');
 
-const extractPlugin = new ExtractTextPlugin({
-	filename: 'main.css'
-});
+const dir = flow(resolve, join);
 
-module.exports = {
-	entry: './src/js/index.js',
-	output: {
-		path: resolve(__dirname, 'dist'),
-		filename: 'bundle.js',
-		publicPath: '/dist'
-	},
-	module: {
-		rules: [
-			{
-				test: /\.js$/,
-				use: [
-					{
-						loader: 'babel-loader',
-						options: {
-							presets: ['es2015']
-						}
-					}
-				]
-			},
-			{
-      	test: /\.scss$/,
-        use: extractPlugin.extract({
-        	use: ['css-loader', 'sass-loader']
-        })
-       }
-    ]
-	},
-	plugins: [
-		extractPlugin
-	]
+const css = {
+    test: /(\.scss$)/,
+    use: [{
+        loader: "style-loader"
+    }, {
+        loader: "css-loader",
+        options: {
+            sourceMap: true
+        }
+    }, {
+        loader: "sass-loader",
+        options: {
+            sourceMap: true
+        }
+    }]
 };
 
+
+const js = {
+    test: /\.js$/,
+    exclude: /(node_modules)/,
+    use: {
+        loader: 'babel-loader',
+        query: {
+            presets: ['es2015']
+        }
+    }
+};
+
+/*
+const js = {
+    test: /\.js$/,
+    exclude: /(node_modules)/,
+    use: {
+        loader: 'babel-loader',
+        options: {
+            "presets": [
+                ["env", {
+                    "targets": {
+                        "chrome": 52,
+                        "browsers": ["last 2 versions", "safari 7"]
+                    }
+                }]
+            ]
+        }
+    }
+};
+*/
+
+module.exports = {
+    context: __dirname,
+    entry: {
+        app: dir('src', 'js', 'index.js')
+    },
+    devtool: 'source-map',
+    devServer: {
+        contentBase: 'dist',
+        hot: true
+    },
+    output: {
+        path: dir(__dirname, 'dist'),
+        filename: '[name].bundle.js',
+        //publicPath: ''
+    },
+    module: {
+        rules: [css, js]
+    },
+    plugins: [
+        new CleanWebpackPlugin('dist'),
+        new HtmlWebpackPlugin({
+            template: dir('src', 'index.html')
+        }),
+        new webpack.NamedModulesPlugin(),
+        new webpack.HotModuleReplacementPlugin()
+    ]
+};
