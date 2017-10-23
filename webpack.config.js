@@ -1,18 +1,37 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const {
-    flow
-} = require('lodash/fp');
-const {
-    join,
-    resolve
-} = require('path');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const extractPlugin = new ExtractTextPlugin({
+	filename: 'main.css'
+});
+const { flow } = require('lodash/fp');
+const { join, resolve } = require('path');
 
 const dir = flow(resolve, join);
 
+const img = {
+    test: /\.(gif|png|jpe?g|svg)$/i,
+    use: [
+    	{
+    		loader: 'file-loader',
+    		options: {
+    			name: '[name].[ext]',
+    			outputPath: 'img/',
+    			publicPath: 'img/'
+    		}
+    	}
+    ]
+}
+
+const html = {
+	test: /\.html$/,
+	use: ['html-loader']
+}
+
 const css = {
     test: /(\.scss$)/,
+    exclude: /(node_modules)/,
     use: [{
         loader: "style-loader"
     }, {
@@ -35,30 +54,10 @@ const js = {
     use: {
         loader: 'babel-loader',
         query: {
-            presets: ['es2015']
+            presets: ['env']
         }
     }
 };
-
-/*
-const js = {
-    test: /\.js$/,
-    exclude: /(node_modules)/,
-    use: {
-        loader: 'babel-loader',
-        options: {
-            "presets": [
-                ["env", {
-                    "targets": {
-                        "chrome": 52,
-                        "browsers": ["last 2 versions", "safari 7"]
-                    }
-                }]
-            ]
-        }
-    }
-};
-*/
 
 module.exports = {
     context: __dirname,
@@ -76,7 +75,7 @@ module.exports = {
         //publicPath: ''
     },
     module: {
-        rules: [css, js]
+        rules: [css, js, img, html]
     },
     plugins: [
         new CleanWebpackPlugin('dist'),

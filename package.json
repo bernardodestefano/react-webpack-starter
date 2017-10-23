@@ -8,6 +8,16 @@
     "build": "webpack-dev-server",
     "build:prod": "webpack  -p"
   },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:bernardodestefano/webpack-boilerplate.git"
+  },
+  "keywords": [
+    "frontend",
+    "webpack",
+    "js",
+    "boilerplate"
+  ],
   "author": "bernardo de stefano",
   "license": "MIT",
   "devDependencies": {
@@ -18,6 +28,8 @@
     "clean-webpack-plugin": "^0.1.17",
     "css-loader": "^0.28.7",
     "extract-text-webpack-plugin": "^3.0.1",
+    "file-loader": "^1.1.5",
+    "html-loader": "^0.5.1",
     "html-webpack-plugin": "^2.30.1",
     "node-sass": "^4.5.3",
     "sass-loader": "^6.0.6",
@@ -27,5 +39,9 @@
   },
   "dependencies": {
     "lodash": "^4.17.4"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/bernardodestefano/webpack-boilerplate/issues"
+  },
+  "homepage": "https://github.com/bernardodestefano/webpack-boilerplate#readme"
 }
