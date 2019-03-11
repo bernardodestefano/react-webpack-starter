@@ -1,0 +1,22 @@
+// TODO: delete me!
+.app {
+  min-height: 100vh;
+  text-align: center;
+  img {
+    height: 40vh;
+    animation: rotation 6s infinite linear;
+  }
+  span,
+  a {
+    margin: 0 0.4rem;
+  }
+}
+
+@keyframes rotation {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(359deg);
+  }
+}
