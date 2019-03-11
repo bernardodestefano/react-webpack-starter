@@ -11,7 +11,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="app">
-        <img src={logo} alt="react" />
+        <img src="/assets/images/react_logo.svg" alt="react" />
         <h1>A simple webpack react boilerplate</h1>
         <h4>
           <span role="img" aria-label="made">

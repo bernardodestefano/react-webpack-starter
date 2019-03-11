@@ -8,7 +8,7 @@
 - **[Babel](http://babeljs.io/)** (7.x)
 - [SASS](http://sass-lang.com/)
 - Image loading/minification using [Image Webpack Loader](https://github.com/tcoopman/image-webpack-loader)
-- Code formatting using [ESlint](https://eslint.org/), [stylelint](https://stylelint.io/), [Prettier](https://prettier.io/).
+- Code formatting using [ESlint](https://eslint.org/), [Stylelint](https://stylelint.io/), [Prettier](https://prettier.io/).
 
 ## Getting started
 
