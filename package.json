@@ -1,7 +1,7 @@
 {
-  "name": "react-boilerplate",
+  "name": "react-webpack-starter",
   "version": "4.0.0",
-  "description": "A minimal boilerplate with hot module replacement",
+  "description": "A minimal react boilerplate with hot module replacement",
   "main": "./src/index.js",
   "scripts": {
     "start": "webpack-dev-server --config=webpack.dev.js",
@@ -13,7 +13,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git@github.com:bernardodestefano/react-boilerplate.git"
+    "url": "git@github.com:bernardodestefano/react-webpack-starter.git"
   },
   "keywords": [
     "frontend",
@@ -60,7 +60,7 @@
     "webpack-merge": "^4.2.1"
   },
   "bugs": {
-    "url": "https://github.com/bernardodestefano/react-boilerplate/issues"
+    "url": "https://github.com/bernardodestefano/react-webpack-starter/issues"
   },
-  "homepage": "https://github.com/bernardodestefano/react-boilerplate#readme"
+  "homepage": "https://github.com/bernardodestefano/react-webpack-starter#readme"
 }
