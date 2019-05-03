@@ -5,9 +5,9 @@
   "main": "./src/index.js",
   "scripts": {
     "start": "webpack-dev-server --config=webpack.dev.js",
-    "build": "yarn run clean-dist && webpack -p --config=webpack.prod.js",
+    "build": "npm run clean-dist && webpack -p --config=webpack.prod.js",
     "clean-dist": "rm -f -r -d dist",
-    "start-prod": "yarn run build && node express.js"
+    "start-prod": "npm run build && node express.js"
   },
   "author": "bernardo de stefano",
   "license": "MIT",
